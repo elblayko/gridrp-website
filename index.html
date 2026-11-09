@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GridRP | Tactical Garry's Mod Gamemode</title>
+  <meta name="description" content="GridRP is a tactical Garry's Mod roleplay gamemode inspired by GangWars RP (2013 by mercior). Not another DarkRP clone--rebuilt from the ground up on Sandbox with Gang Stock Exchanges, Metasploit Cyber Warfare, and persistent progression." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-obsidian-950 text-slate-200 overflow-x-hidden">
+
+  <!-- TOP ACCENT STRIPE -->
+  <div class="h-1 w-full bg-gradient-to-r from-sky-500 via-emerald-400 to-amber-500 sticky top-0 z-50"></div>
+
+  <!-- NAVIGATION BAR -->
+  <header class="sticky top-1 z-40 obsidian-glass border-b border-obsidian-700/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Version Tag -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-lg bg-obsidian-900 border border-sky-500/40 flex items-center justify-center text-sky-400 font-mono font-bold text-lg group-hover:border-sky-400 transition-colors">
+          G
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-black text-lg tracking-wider text-white">GRID<span class="text-sky-400">RP</span></span>
+            <span class="px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-sky-500/10 text-sky-400 border border-sky-500/30">v2.0</span>
+          </div>
+          <p class="text-[10px] text-slate-400 hidden sm:block">Inspired by GangWars RP (2013 by mercior)</p>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-6 text-xs font-semibold uppercase tracking-wider text-slate-300">
+        <a href="#heritage" class="hover:text-sky-400 transition-colors">Origins</a>
+        <a href="#features" class="hover:text-sky-400 transition-colors">Features</a>
+        <a href="#interactive" class="hover:text-sky-400 transition-colors">Cyber & Markets</a>
+        <a href="#screenshots" class="hover:text-sky-400 transition-colors">Gallery</a>
+        <a href="#how-to-join" class="hover:text-sky-400 transition-colors">Connect</a>
+      </nav>
+
+      <!-- Right CTAs & Audio Toggle -->
+      <div class="flex items-center gap-3">
+        <!-- Audio Mute/Unmute Toggle -->
+        <button id="audio-toggle-btn" class="w-9 h-9 rounded-lg bg-obsidian-900 border border-obsidian-700 hover:border-sky-400/60 flex items-center justify-center transition-colors text-slate-400 hover:text-white" title="Toggle UI Sound Effects">
+          <span id="audio-icon"></span>
+        </button>
+
+        <!-- Discord Button -->
+        <a href="https://discord.gg/gridrp" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-obsidian-800 border border-obsidian-700 hover:border-slate-500 text-xs font-bold text-slate-200 transition-colors">
+          <svg class="w-4 h-4 text-[#5865F2]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+          </svg>
+          <span>Discord</span>
+        </a>
+
+        <!-- Connect Button -->
+        <button data-copy-ip class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-obsidian-950 text-xs font-bold transition-all shadow-cyan-glow">
+          <span>CONNECT</span>
+          <span class="keycap !bg-obsidian-900/60 !border-obsidian-950/40 !text-white text-[10px]">~</span>
+        </button>
+
+        <!-- Mobile Menu Trigger -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-obsidian-900 border border-obsidian-700 text-slate-300">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Nav Flyout -->
+    <div id="mobile-menu" class="hidden md:hidden obsidian-glass border-b border-obsidian-700 px-4 py-3 space-y-2">
+      <a href="#heritage" class="block text-sm py-1 font-semibold text-slate-300">Origins</a>
+      <a href="#features" class="block text-sm py-1 font-semibold text-slate-300">Features</a>
+      <a href="#interactive" class="block text-sm py-1 font-semibold text-slate-300">Cyber & Markets</a>
+      <a href="#screenshots" class="block text-sm py-1 font-semibold text-slate-300">Gallery</a>
+      <a href="#how-to-join" class="block text-sm py-1 font-semibold text-slate-300">Connect</a>
+      <a href="https://discord.gg/gridrp" target="_blank" class="block text-sm py-1 font-bold text-sky-400">Join Discord Community</a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden">
+    <!-- Ambient background glows -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-sky-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+    <div class="absolute top-1/3 right-10 w-[400px] h-[300px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+
+      <!-- Not DarkRP Clone & Origin Pill -->
+      <div class="inline-flex flex-wrap items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian-900/90 border border-amber-500/40 text-amber-300 text-xs font-semibold mb-6 shadow-amber-glow animate-fade-in">
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+        <span class="font-bold text-white uppercase tracking-wider bg-red-500/20 px-2 py-0.5 rounded border border-red-500/40 text-[10px]">Not Another DarkRP Clone</span>
+        <span class="text-slate-500">|</span>
+        <span>Inspired by GangWars RP (2013 by mercior)</span>
+        <span class="text-slate-500">|</span>
+        <span class="text-slate-300">Custom Systems by Juicebox</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white max-w-5xl mx-auto uppercase leading-tight mb-6">
+        Next-Generation <br class="hidden sm:inline" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-emerald-300 to-amber-300">Tactical Gang</span> Roleplay
+      </h1>
+
+      <!-- Subtitle explicitly stating it is built on Sandbox, not DarkRP -->
+      <p class="max-w-3xl mx-auto text-base sm:text-lg text-slate-300 mb-10 leading-relaxed font-normal">
+        Built from scratch on the native Garry's Mod <strong class="text-sky-300">sandbox</strong> base--not another generic DarkRP clone. GridRP features real-time <strong class="text-white">Gang Stock Exchanges</strong>, contested <strong class="text-white">turf protection rackets</strong>, native <strong class="text-white">Metasploit cyber warfare</strong>, and persistent progression across sessions. Zero Wiremod required.
+      </p>
+
+      <!-- Server Connect Command Bar -->
+      <div class="max-w-2xl mx-auto bg-obsidian-900/90 border border-obsidian-700 rounded-xl p-2 sm:p-3 shadow-obsidian-modal flex flex-col sm:flex-row items-center justify-between gap-3 mb-10">
+        <div class="flex items-center gap-3 px-3 w-full sm:w-auto text-left">
+          <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
+          <div>
+            <div class="text-[11px] uppercase tracking-wider text-slate-400 font-mono">Console Launch Command</div>
+            <code class="text-sky-300 font-mono font-bold text-sm select-all">connect 127.0.0.1:27015</code>
+          </div>
+        </div>
+        
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <button data-copy-ip class="w-full sm:w-auto px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-400 text-obsidian-950 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-cyan-glow">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path>
+            </svg>
+            <span>Copy IP</span>
+          </button>
+          
+          <a href="steam://connect/127.0.0.1:27015" class="w-full sm:w-auto px-4 py-2 rounded-lg bg-obsidian-800 hover:bg-obsidian-700 border border-obsidian-700 text-slate-200 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center">
+            Direct Launch
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        <div class="obsidian-card p-4 rounded-xl text-left border-t-2 border-t-sky-400">
+          <div class="text-[11px] font-mono text-slate-400 uppercase">World Engine</div>
+          <div class="text-lg font-black text-white">Persistent Progression</div>
+          <div class="text-xs text-sky-400 mt-1">Inventories, vaults & turf persist across sessions</div>
+        </div>
+        <div class="obsidian-card p-4 rounded-xl text-left border-t-2 border-t-emerald-400">
+          <div class="text-[11px] font-mono text-slate-400 uppercase">Economy</div>
+          <div class="text-lg font-black text-white">Gang Stock IPOs</div>
+          <div class="text-xs text-emerald-400 mt-1">Real-time dynamic pricing & dividends</div>
+        </div>
+        <div class="obsidian-card p-4 rounded-xl text-left border-t-2 border-t-amber-400">
+          <div class="text-[11px] font-mono text-slate-400 uppercase">Street Gangs</div>
+          <div class="text-lg font-black text-white">Turf Rackets</div>
+          <div class="text-xs text-amber-400 mt-1">5%-30% extortion taxes on print farms</div>
+        </div>
+        <div class="obsidian-card p-4 rounded-xl text-left border-t-2 border-t-red-400">
+          <div class="text-[11px] font-mono text-slate-400 uppercase">Cyber Layer</div>
+          <div class="text-lg font-black text-white">Metasploit Exploits</div>
+          <div class="text-xs text-red-400 mt-1">Cash siphons & thermal detonators</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ORIGINS & DARKRP DISTINCTION -->
+  <section id="heritage" class="py-16 bg-obsidian-900/60 border-y border-obsidian-700/80 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <div class="lg:col-span-8">
+          <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono font-bold uppercase mb-3">
+            Origins & Creative Liberties
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight mb-4">
+            Not Another DarkRP Clone: Rebuilt from the Ground Up
+          </h2>
+          <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+            <p>
+              In 2013, <strong>mercior</strong> created <strong>GangWars RP</strong>, establishing a gritty urban crime setting where player gangs fought street-by-street for territorial supremacy.
+            </p>
+            <p>
+              <strong>Juicebox</strong>, who served as a developer and senior administrator on GangWars RP back in the day, built <strong>GridRP</strong> as a ground-up reimagining inspired by that classic foundation. Rather than an imitation, GridRP takes substantial creative liberties and introduces deep custom systems of its own.
+            </p>
+            <p class="text-sky-300 font-medium">
+              GridRP is explicitly <strong>not another DarkRP clone</strong>. Running on the clean Garry's Mod <code class="text-amber-400 bg-obsidian-950 px-1.5 py-0.5 rounded border border-obsidian-700">sandbox</code> base rather than recycled DarkRP code, it replaces passive printer-sitting and generic jobs with an active Gang Stock Exchange, physical L3 network switch cabling, Metasploit cyber warfare, and permanent player progression across sessions.
+            </p>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center gap-4 text-xs font-mono">
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded bg-obsidian-950 border border-obsidian-700 text-slate-300">
+              <span class="text-amber-400 font-bold">Base Gamemode:</span> sandbox (Not DarkRP)
+            </div>
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded bg-obsidian-950 border border-obsidian-700 text-slate-300">
+              <span class="text-sky-400 font-bold">Inspiration:</span> GangWars RP (2013 by mercior)
+            </div>
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded bg-obsidian-950 border border-obsidian-700 text-slate-300">
+              <span class="text-emerald-400 font-bold">Author:</span> Juicebox
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-4">
+          <div class="obsidian-card p-6 rounded-2xl border-amber-500/30 relative overflow-hidden">
+            <div class="text-amber-400 text-xs font-mono font-bold uppercase tracking-wider mb-2">How GridRP Differs from DarkRP</div>
+            <ul class="space-y-3 text-xs text-slate-300">
+              <li class="flex items-start gap-2">
+                <span class="text-red-400 font-bold">✗</span>
+                <span class="text-slate-400 line-through">Passive printer sitting in closed rooms</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-400 font-bold">✓</span>
+                <span>Thermodynamic printers requiring radial sweet-spot venting & overclock modules</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-400 font-bold">✗</span>
+                <span class="text-slate-400 line-through">Static salaries with no economic risk</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-400 font-bold">✓</span>
+                <span>Public Gang Stock IPOs with dynamic pricing and circuit breaker raid halts</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-400 font-bold">✗</span>
+                <span class="text-slate-400 line-through">Fragile sessions & inventory wipe on disconnect</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-400 font-bold">✓</span>
+                <span>Permanent progression: inventories, bank balances, and gang vaults persist</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FACTIONS OVERVIEW -->
+  <section id="features" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono font-bold tracking-widest text-sky-400 uppercase">The Tri-Faction Ecosystem</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white uppercase tracking-tight mt-2">
+          Three Factions. One Living City.
+        </h2>
+        <p class="text-sm text-slate-400 mt-3">
+          GridRP balances economic ambition, criminal gangs, and urban pacification into a continuous three-way struggle.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Gangs Card -->
+        <div class="obsidian-card rounded-2xl p-6 border-t-4 border-t-red-500 hover:border-red-500/80 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-1 rounded text-xs font-bold font-mono uppercase bg-red-500/10 text-red-400 border border-red-500/30">Street Gangs</span>
+              <span class="text-xs text-slate-500 font-mono">5 Careers</span>
+            </div>
+            <h3 class="text-2xl font-black text-white uppercase mb-2">Street Gangs</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-6">
+              Territorial sovereignty and predatory extraction. Form gangs, conquer flag poles for passive dividends, levy 5%-30% protection taxes, and launch dynamic IPOs on the Gang Stock Exchange.
+            </p>
+            <div class="space-y-2 mb-6">
+              <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Signature Mechanics</div>
+              <div class="flex flex-wrap gap-1.5 text-[11px] font-mono">
+                <span class="px-2 py-0.5 rounded bg-obsidian-950 border border-obsidian-700 text-slate-300">Turf Rackets</span>
+                <span class="px-2 py-0.5 rounded bg-obsidian-950 border border-obsidian-700 text-slate-300">Gang IPOs</span>
+                <span class="px-2 py-0.5 rounded bg-obsidian-950 border border-obsidian-700 text-slate-300">Lockpicking</span>
+                <span class="px-2 py-0.5 rounded bg-obsidian-950 border border-obsidian-700 text-slate-300">Contract Hits</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-obsidian-700/80 text-xs text-red-400 font-bold font-mono">
+            Key Roles: Gang Leader, Gangster, Hitman, Thief
+          </div>
+        </div>
+
+        <!-- Civilians Card -->
+        <div class="obsidian-card rounded-2xl p-6 border-t-4 border-t-sky-400 hover:border-sky-400/80 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-1 rounded text-xs font-bold font-mono uppercase bg-sky-500/10 text-sky-400 border border-sky-500/30">Enterprise</span>
+              <span class="text-xs text-slate-500 font-mono">6 Careers</span>
+            </div>
+            <h3 class="text-2xl font-black text-white uppercase mb-2">Citizens & Tech</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-6">
+              Capital accumulation, enterprise infrastructure, and cyber warfare. Build multi-printer fortified compounds, wire native L3 optical networks, launch Metasploit cash siphons, and scavenge street salvage.
+            </p>
+            <div class="space-y-2 mb-6">
+              <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Signature Mechanics</div>
+              <div class="flex flex-wrap gap-1.5 text-[11px] font-mono">
+                <span class="px-2 py-0.5 rounded bg-obsidian-950 border border-obsidian-700 text-slate-300">Metasploit Exploits</span>
+                <span class="px-2 py-0.5 rounded bg-obsidian-950 border border-obsidian-700 text-slate-300">L3 Cabling</span>
+                <span class="px-2 py-0.5 rounded bg-obsidian-950 border border-obsidian-700 text-slate-300">Cloud Botnets</span>
+                <span class="px-2 py-0.5 rounded bg-obsidian-950 border border-obsidian-700 text-slate-300">Street Recycling</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-obsidian-700/80 text-xs text-sky-400 font-bold font-mono">
+            Key Roles: Cyber Engineer, Security, Pharmacist, Hobo
+          </div>
+        </div>
+
+        <!-- Police Card -->
+        <div class="obsidian-card rounded-2xl p-6 border-t-4 border-t-blue-500 hover:border-blue-500/80 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-1 rounded text-xs font-bold font-mono uppercase bg-blue-500/10 text-blue-400 border border-blue-500/30">Order</span>
+              <span class="text-xs text-slate-500 font-mono">4 Careers</span>
+            </div>
+            <h3 class="text-2xl font-black text-white uppercase mb-2">Law Enforcement</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-6">
+              Urban pacification and contraband interdiction. Conduct wireless contraband scans, breach compound doors with SWAT Battering Rams, deploy conductive Tasers, and trigger Citywide Martial Law.
+            </p>
+            <div class="space-y-2 mb-6">
+              <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Signature Mechanics</div>
+              <div class="flex flex-wrap gap-1.5 text-[11px] font-mono">
+                <span class="px-2 py-0.5 rounded bg-obsidian-950 border border-obsidian-700 text-slate-300">Multi-Cell Jail</span>
+                <span class="px-2 py-0.5 rounded bg-obsidian-950 border border-obsidian-700 text-slate-300">Conductive Taser</span>
+                <span class="px-2 py-0.5 rounded bg-obsidian-950 border border-obsidian-700 text-slate-300">Forensics</span>
+                <span class="px-2 py-0.5 rounded bg-obsidian-950 border border-obsidian-700 text-slate-300">Martial Law</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-obsidian-700/80 text-xs text-blue-400 font-bold font-mono">
+            Key Roles: Mayor, Police Chief, SWAT Specialist, Officer
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTERACTIVE SHOWCASE HUB -->
+  <section id="interactive" class="py-20 bg-obsidian-900/40 border-t border-obsidian-700/80 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase">Interactive Systems Preview</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white uppercase tracking-tight mt-2">
+          Experience GridRP In Your Browser
+        </h2>
+        <p class="text-sm text-slate-400 mt-3">
+          Test-drive the Linux Cyber Terminal with authentic Metasploit modules, inspect live gang stock charts, and evaluate faction loadouts directly below.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left: CyberDeck OS Terminal with Metasploit (7 cols) -->
+        <div id="cyber-terminal-card" class="lg:col-span-7 obsidian-card rounded-2xl overflow-hidden shadow-obsidian-modal border-sky-500/40">
+          
+          <!-- Terminal Header Strip (Matches grid_computer cl_init.lua) -->
+          <div id="term-header" class="bg-obsidian-900 px-4 py-3 border-b border-obsidian-700 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+              <span class="ml-2 font-mono text-xs text-emerald-400 font-bold" id="term-header-title">CYBERDECK OS v2.4 -- [ Interface: eth0 | IP: 192.168.1.15 ]</span>
+            </div>
+            <div class="flex items-center gap-2 text-[11px] font-mono text-sky-400">
+              <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+              <span>1000BASE-T FULL DUPLEX</span>
+            </div>
+          </div>
+
+          <!-- Terminal Output Area -->
+          <div id="term-output" class="p-4 sm:p-5 h-80 overflow-y-auto space-y-1.5 bg-obsidian-950 font-mono text-xs sm:text-sm"></div>
+
+          <!-- Terminal Input Prompt (Dynamic Prompt Label for MSF mode) -->
+          <form id="term-form" class="bg-obsidian-900/90 border-t border-obsidian-700 p-3 flex items-center gap-2">
+            <span id="term-prompt-label" class="text-[#4ade80] font-mono font-bold text-xs sm:text-sm select-none">root@cyberdeck:~# </span>
+            <input id="term-input" type="text" autocomplete="off" placeholder="type 'help', 'nmap', 'airmon', 'wan crack', 'botnet start', 'msf'..." class="flex-1 bg-transparent border-none text-slate-100 font-mono text-xs sm:text-sm focus:outline-none placeholder-slate-600" />
+            <button type="submit" class="px-3 py-1 rounded bg-sky-500/20 text-sky-300 border border-sky-500/40 text-xs font-mono font-bold hover:bg-sky-500/30 transition-colors">
+              EXEC
+            </button>
+          </form>
+
+          <div class="bg-obsidian-950/80 px-4 py-2 border-t border-obsidian-800 text-[11px] font-mono text-slate-400 flex flex-wrap items-center justify-between gap-2">
+            <span>In-Game OS: try <strong class="text-cyan-300">nmap</strong>, <strong class="text-emerald-300">airmon</strong>, <strong class="text-amber-300">wan crack</strong>, <strong class="text-sky-300">botnet start</strong>, or <strong class="text-yellow-400">msf</strong></span>
+            <span class="text-slate-500">Exact Lua Engine Emulation</span>
+          </div>
+        </div>
+
+        <!-- Right: Gang Stock Exchange Widget (5 cols) -->
+        <div id="stock-widget-card" class="lg:col-span-5 obsidian-card rounded-2xl p-6 shadow-obsidian-modal border-emerald-500/40">
+          
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400">Gang Stock Exchange (GSE)</span>
+              <h3 class="text-lg font-black text-white uppercase">Live Dynamic IPOs</h3>
+            </div>
+            <div id="stock-breaker-status" class="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-3 py-1 rounded">
+              CIRCUIT BREAKER: CLEAR
+            </div>
+          </div>
+
+          <!-- Stock Symbol Tabs -->
+          <div class="flex items-center gap-2 mb-6">
+            <button data-stock-tab="CARTEL" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-sky-500/20 border border-sky-400 text-sky-300 transition-all">CARTEL</button>
+            <button data-stock-tab="GANG" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-obsidian-800 border border-obsidian-700 text-slate-400 hover:text-white transition-all">GANG</button>
+            <button data-stock-tab="MAFIA" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-obsidian-800 border border-obsidian-700 text-slate-400 hover:text-white transition-all">MAFIA</button>
+          </div>
+
+          <!-- Price & Metrics Display -->
+          <div class="flex items-baseline justify-between mb-4">
+            <div>
+              <div class="text-3xl font-black text-white font-mono" id="stock-price">$1,420</div>
+              <div class="text-xs text-slate-400 mt-0.5">Share Valuation (Based on Printers & Turf)</div>
+            </div>
+            <div id="stock-change" class="text-emerald-400 text-sm font-bold font-mono">+18.4%</div>
+          </div>
+
+          <!-- SVG Candlestick / Trend Graph -->
+          <div class="w-full h-44 bg-obsidian-950 rounded-xl border border-obsidian-800 p-2 mb-6 scanline-grid relative flex items-center justify-center">
+            <svg id="stock-chart-svg" class="w-full h-full" viewBox="0 0 500 180" preserveAspectRatio="none"></svg>
+          </div>
+
+          <!-- Key Metrics -->
+          <div class="grid grid-cols-2 gap-3 text-xs font-mono mb-6">
+            <div class="bg-obsidian-900/80 p-2.5 rounded-lg border border-obsidian-800">
+              <span class="text-slate-500 block text-[10px] uppercase">Active Printers</span>
+              <span id="stock-printers" class="text-slate-200 font-bold text-xs">12 Active Printers</span>
+            </div>
+            <div class="bg-obsidian-900/80 p-2.5 rounded-lg border border-obsidian-800">
+              <span class="text-slate-500 block text-[10px] uppercase">Dividend Payout</span>
+              <span id="stock-dividend" class="text-emerald-400 font-bold text-xs">$45 / 90s</span>
+            </div>
+          </div>
+
+          <!-- Interactive Simulation Buttons -->
+          <div class="grid grid-cols-2 gap-3">
+            <button id="stock-shock-btn" class="px-3 py-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 border border-red-500/40 text-red-400 text-xs font-bold font-mono uppercase transition-colors">
+              Simulate Raid Shock
+            </button>
+            <button id="stock-capture-btn" class="px-3 py-2 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-bold font-mono uppercase transition-colors">
+              Simulate Turf Capture
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Factions & Careers Inspector -->
+      <div id="factions-widget-card" class="mt-12 obsidian-card rounded-2xl p-6 lg:p-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-6 border-b border-obsidian-700/80">
+          <div>
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-sky-400">Class & Equipment Dossier</span>
+            <h3 id="faction-name" class="text-2xl font-black text-white uppercase mt-1">Street Gangs</h3>
+            <p id="faction-tagline" class="text-xs text-slate-400 mt-1">Territory, Extortion & Street Gang Dominance</p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button data-faction-tab="gangs" class="px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold bg-sky-500/20 border border-sky-400 text-sky-300">Street Gangs</button>
+            <button data-faction-tab="civilians" class="px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold bg-obsidian-800 border border-obsidian-700 text-slate-400 hover:text-white">Citizens & Tech</button>
+            <button data-faction-tab="police" class="px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold bg-obsidian-800 border border-obsidian-700 text-slate-400 hover:text-white">Law Enforcement</button>
+          </div>
+        </div>
+
+        <p id="faction-desc" class="text-sm text-slate-300 leading-relaxed mb-6"></p>
+
+        <!-- Dynamic Jobs Grid -->
+        <div id="faction-jobs-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SCREENSHOT PLACEHOLDER SHOWCASE GALLERY -->
+  <section id="screenshots" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono font-bold tracking-widest text-sky-400 uppercase">Visual Showcase</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white uppercase tracking-tight mt-2">
+          Gameplay & System Screenshots
+        </h2>
+        <p class="text-sm text-slate-400 mt-3">
+          High-definition 1080p preview slots ready for in-game captures of key systems. Click any slot to view details.
+        </p>
+      </div>
+
+      <!-- Grid of Screenshot Cards -->
+      <div id="screenshot-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Rendered dynamically by main.js with fallback mockups -->
+      </div>
+
+      <div class="mt-12 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-obsidian-900 border border-obsidian-700 text-xs font-mono text-slate-400">
+          <span class="text-sky-400 font-bold">[NOTE]</span>
+          <span>To add your own screenshots, save your 1920x1080 images into the <code class="text-amber-400 font-bold">assets/screenshots/</code> folder.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW TO JOIN & QUICK START -->
+  <section id="how-to-join" class="py-20 bg-obsidian-900/60 border-t border-obsidian-700/80 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono font-bold tracking-widest text-amber-400 uppercase">Deployment & Onboarding</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white uppercase tracking-tight mt-2">
+          Join the Server in 4 Steps
+        </h2>
+        <p class="text-sm text-slate-400 mt-3">
+          Get in, establish your gang, and stake your claim in the city.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        
+        <div class="obsidian-card p-6 rounded-2xl relative">
+          <div class="w-8 h-8 rounded-lg bg-sky-500/20 border border-sky-400 text-sky-300 font-mono font-bold flex items-center justify-center mb-4">
+            01
+          </div>
+          <h4 class="text-base font-bold text-white mb-2">Subscribe Content</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Subscribe to the official Steam Workshop collection for required map textures, high-res models, and audio.
+          </p>
+        </div>
+
+        <div class="obsidian-card p-6 rounded-2xl relative">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-400 text-emerald-300 font-mono font-bold flex items-center justify-center mb-4">
+            02
+          </div>
+          <h4 class="text-base font-bold text-white mb-2">Connect Console</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Press <span class="keycap">~</span> to open the developer console and execute <code class="text-sky-300">connect 127.0.0.1:27015</code>.
+          </p>
+        </div>
+
+        <div class="obsidian-card p-6 rounded-2xl relative">
+          <div class="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-400 text-amber-300 font-mono font-bold flex items-center justify-center mb-4">
+            03
+          </div>
+          <h4 class="text-base font-bold text-white mb-2">Spawn & Scavenge</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Spawn with $250. Search street dumpsters, recycle salvage for instant capital, or purchase your first printer.
+          </p>
+        </div>
+
+        <div class="obsidian-card p-6 rounded-2xl relative">
+          <div class="w-8 h-8 rounded-lg bg-red-500/20 border border-red-400 text-red-300 font-mono font-bold flex items-center justify-center mb-4">
+            04
+          </div>
+          <h4 class="text-base font-bold text-white mb-2">Found a Gang</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Type <code class="text-amber-300">/creategang</code> ($200) to form a gang, claim territory flags, and launch an IPO.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Essential Hotkeys Bar -->
+      <div class="obsidian-card p-6 rounded-2xl max-w-4xl mx-auto flex flex-wrap items-center justify-around gap-6 text-center">
+        <div>
+          <span class="keycap text-sm px-3 py-1">F4</span>
+          <div class="text-xs font-bold text-white mt-2">Commerce Hub</div>
+          <div class="text-[11px] text-slate-400">Shop, Auction, Jobs</div>
+        </div>
+        <div>
+          <span class="keycap text-sm px-3 py-1">F2</span>
+          <div class="text-xs font-bold text-white mt-2">Door Ownership</div>
+          <div class="text-[11px] text-slate-400">Buy, Sell, Co-own</div>
+        </div>
+        <div>
+          <span class="keycap text-sm px-3 py-1">E</span>
+          <div class="text-xs font-bold text-white mt-2">World Interact</div>
+          <div class="text-[11px] text-slate-400">Printers, ATMs, Switches</div>
+        </div>
+        <div>
+          <span class="keycap text-sm px-3 py-1">CTRL + E</span>
+          <div class="text-xs font-bold text-white mt-2">Hardware Menu</div>
+          <div class="text-[11px] text-slate-400">Tuning & Cryo Modules</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-obsidian-950 border-t border-obsidian-800 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-obsidian-800">
+        
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-obsidian-900 border border-sky-500/40 flex items-center justify-center text-sky-400 font-mono font-bold text-base">
+            G
+          </div>
+          <div>
+            <span class="font-black text-base text-white tracking-wider">GRID<span class="text-sky-400">RP</span></span>
+            <p class="text-xs text-slate-400">Tactical Garry's Mod Roleplay Gamemode</p>
+          </div>
+        </div>
+
+        <!-- GangWars RP 2013 Heritage Tribute Badge with mercior credit -->
+        <div class="text-center md:text-right">
+          <div class="text-xs text-amber-300 font-mono font-bold">
+            Inspired by GangWars RP (2013 by mercior)
+          </div>
+          <div class="text-[11px] text-slate-400 mt-0.5">
+            Not a DarkRP clone -- rebuilt on Sandbox with custom systems by Juicebox
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-mono">
+        <div>
+          &copy; 2026 GridRP. Native Sandbox Base. Strict 7-bit ASCII Compliance.
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="https://discord.gg/gridrp" target="_blank" class="hover:text-sky-400 transition-colors">Discord</a>
+          <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=gridrp" target="_blank" class="hover:text-sky-400 transition-colors">Steam Workshop</a>
+          <a href="#interactive" class="hover:text-sky-400 transition-colors">Metasploit Console</a>
+          <a href="#how-to-join" class="hover:text-sky-400 transition-colors">Connect Server</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX MODAL FOR SCREENSHOT PLACEHOLDERS -->
+  <div id="screenshot-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="obsidian-card max-w-4xl w-full rounded-2xl overflow-hidden border-sky-500/40 shadow-2xl relative">
+      
+      <div class="p-4 bg-obsidian-900 border-b border-obsidian-700 flex items-center justify-between">
+        <div>
+          <h3 id="modal-title" class="text-base font-bold text-white"></h3>
+          <p id="modal-desc" class="text-xs text-slate-400 mt-0.5"></p>
+        </div>
+        <button id="modal-close" class="w-8 h-8 rounded-lg bg-obsidian-800 hover:bg-red-500/20 hover:text-red-400 border border-obsidian-700 flex items-center justify-center text-slate-300 transition-colors font-bold font-mono">
+          X
+        </button>
+      </div>
+
+      <div id="modal-img-container" class="p-4 bg-obsidian-950 flex items-center justify-center min-h-[300px]"></div>
+
+      <div class="p-3 bg-obsidian-900/90 border-t border-obsidian-800 flex items-center justify-between text-[11px] font-mono text-slate-400">
+        <div class="flex items-center gap-1.5">
+          <span>Target Path:</span>
+          <code id="modal-path" class="text-sky-300 font-bold"></code>
+        </div>
+        <span class="text-slate-500">Press ESC or click outside to close</span>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

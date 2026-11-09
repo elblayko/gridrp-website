@@ -7,6 +7,46 @@ import { initStockWidget } from './stocks.js';
 import { initFactions } from './factions.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. Dynamic Configuration Hydration from GitOps / Environment Variables
+  function hydrateDynamicConfig() {
+    // Update connect command text blocks
+    document.querySelectorAll('[data-config-text="connect-command"]').forEach(el => {
+      el.textContent = SITE_CONFIG.server.connectCommand;
+    });
+
+    // Update server IP text
+    document.querySelectorAll('[data-config-text="server-ip"]').forEach(el => {
+      el.textContent = SITE_CONFIG.server.ip;
+    });
+
+    // Update server port text
+    document.querySelectorAll('[data-config-text="server-port"]').forEach(el => {
+      el.textContent = SITE_CONFIG.server.port;
+    });
+
+    // Update Steam direct launch hrefs
+    document.querySelectorAll('[data-config-href="steam-connect"]').forEach(el => {
+      el.setAttribute('href', SITE_CONFIG.server.steamConnectUrl);
+    });
+
+    // Update Discord community hrefs
+    document.querySelectorAll('[data-config-href="discord"]').forEach(el => {
+      el.setAttribute('href', SITE_CONFIG.community.discord);
+    });
+
+    // Update Steam Workshop collection hrefs
+    document.querySelectorAll('[data-config-href="workshop"]').forEach(el => {
+      el.setAttribute('href', SITE_CONFIG.community.workshopCollection);
+    });
+
+    // Update GitHub hrefs
+    document.querySelectorAll('[data-config-href="github"]').forEach(el => {
+      el.setAttribute('href', SITE_CONFIG.community.github);
+    });
+  }
+
+  hydrateDynamicConfig();
+
   // 1. Audio Mute Toggle Button
   const audioToggleBtn = document.getElementById('audio-toggle-btn');
   const audioIcon = document.getElementById('audio-icon');

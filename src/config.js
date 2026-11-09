@@ -1,14 +1,28 @@
 // GridRP Centralized Site Configuration & Metadata
-// Synchronized directly with gamemode/factions/sh_factions.lua
+// Supports GitOps environment variable injection via Vite (import.meta.env)
+// and DigitalOcean App Platform build-time variables.
+
+const getEnv = (key, fallback) => {
+  if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env[key] !== undefined && import.meta.env[key] !== '') {
+    return import.meta.env[key];
+  }
+  return fallback;
+};
+
+const serverIp = getEnv('VITE_SERVER_IP', '127.0.0.1');
+const serverPort = getEnv('VITE_SERVER_PORT', '27015');
+const connectCommand = getEnv('VITE_CONNECT_COMMAND', `connect ${serverIp}:${serverPort}`);
+const steamConnectUrl = getEnv('VITE_STEAM_CONNECT_URL', `steam://connect/${serverIp}:${serverPort}`);
+
 export const SITE_CONFIG = {
-  name: "GridRP",
-  subtitle: "Tactical Garry's Mod Roleplay Gamemode",
-  version: "v2.0.0 (2026)",
-  author: "Juicebox",
+  name: getEnv('VITE_SITE_NAME', "GridRP"),
+  subtitle: getEnv('VITE_SITE_SUBTITLE', "Tactical Garry's Mod Roleplay Gamemode"),
+  version: getEnv('VITE_SITE_VERSION', "v2.0.0 (2026)"),
+  author: getEnv('VITE_AUTHOR_NAME', "Juicebox"),
 
   // Heritage & Origins (GangWars RP 2013 by mercior)
   legacy: {
-    title: "Inspired by GangWars RP (2013)",
+    title: getEnv('VITE_LEGACY_TITLE', "Inspired by GangWars RP (2013)"),
     originalCreator: "mercior",
     originalYear: "2013",
     authorRole: "Former Developer & Senior Administrator",
@@ -18,22 +32,23 @@ export const SITE_CONFIG = {
 
   // Connection & Community Links
   server: {
-    name: "[US-East] GridRP 2.0 | Gang Stock Exchange | Cloud Botnet | Turf Rackets",
-    ip: "127.0.0.1",
-    port: "27015",
-    connectCommand: "connect 127.0.0.1:27015",
-    map: "rp_downtown_v4c_v2",
-    tickrate: "66 Tick",
-    slots: "32/32 Players",
-    status: "ONLINE",
-    persistence: "Persistent Progression (Inventories, Gang Vaults, and Turf persist across sessions)",
+    name: getEnv('VITE_SERVER_NAME', "[US-East] GridRP 2.0 | Gang Stock Exchange | Cloud Botnet | Turf Rackets"),
+    ip: serverIp,
+    port: serverPort,
+    connectCommand: connectCommand,
+    steamConnectUrl: steamConnectUrl,
+    map: getEnv('VITE_SERVER_MAP', "rp_downtown_v4c_v2"),
+    tickrate: getEnv('VITE_SERVER_TICKRATE', "66 Tick"),
+    slots: getEnv('VITE_SERVER_SLOTS', "32/32 Players"),
+    status: getEnv('VITE_SERVER_STATUS', "ONLINE"),
+    persistence: getEnv('VITE_SERVER_PERSISTENCE', "Persistent Progression (Inventories, Gang Vaults, and Turf persist across sessions)"),
   },
 
   community: {
-    discord: "https://discord.gg/gridrp",
-    steamGroup: "https://steamcommunity.com/groups/gridrp",
-    workshopCollection: "https://steamcommunity.com/sharedfiles/filedetails/?id=gridrp",
-    github: "https://github.com/gridrp",
+    discord: getEnv('VITE_DISCORD_URL', "https://discord.gg/gridrp"),
+    steamGroup: getEnv('VITE_STEAM_GROUP_URL', "https://steamcommunity.com/groups/gridrp"),
+    workshopCollection: getEnv('VITE_WORKSHOP_URL', "https://steamcommunity.com/sharedfiles/filedetails/?id=gridrp"),
+    github: getEnv('VITE_GITHUB_URL', "https://github.com/gridrp"),
   },
 
   // Screenshot Placeholders & Key Elements

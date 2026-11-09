@@ -42,3 +42,27 @@ Drop your 1920x1080 images into `public/assets/screenshots/`:
 - `money-printers.webp`
 - `auction-house.webp`
 - `corrections-jail.webp`
+
+## GitOps & DigitalOcean App Platform Environment Variables
+
+For GitOps deployments (e.g. DigitalOcean App Platform, Cloudflare Pages, Vercel, Netlify), configuration variables are injected at build time (`npm run build`).
+
+Set these in **DigitalOcean App Platform** under:
+`App -> Settings -> Components -> gridrp-website -> Environment Variables`
+
+| Variable | Description | Default Fallback |
+| :--- | :--- | :--- |
+| `VITE_SERVER_IP` | Game server IP address | `127.0.0.1` |
+| `VITE_SERVER_PORT` | Game server port | `27015` |
+| `VITE_CONNECT_COMMAND` | Custom console connect command | `connect <IP>:<PORT>` |
+| `VITE_STEAM_CONNECT_URL` | Direct Steam protocol URL | `steam://connect/<IP>:<PORT>` |
+| `VITE_DISCORD_URL` | Discord community invite link | `https://discord.gg/gridrp` |
+| `VITE_WORKSHOP_URL` | Steam Workshop collection link | `https://steamcommunity.com/...` |
+| `VITE_GITHUB_URL` | Project repository link | `https://github.com/gridrp` |
+| `VITE_SERVER_NAME` | Public hostname banner | `[US-East] GridRP 2.0...` |
+| `VITE_SERVER_MAP` | Active rotation map name | `rp_downtown_v4c_v2` |
+| `VITE_SERVER_TICKRATE` | Server tickrate display | `66 Tick` |
+| `VITE_SERVER_SLOTS` | Player capacity string | `32/32 Players` |
+| `VITE_SERVER_STATUS` | Status badge text | `ONLINE` |
+
+A sample template is provided in [.env.example](file:///c:/Users/Blake/Desktop/Projects/gridrp-website/.env.example). Local development defaults are saved in [.env](file:///c:/Users/Blake/Desktop/Projects/gridrp-website/.env).
